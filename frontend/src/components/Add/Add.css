@@ -1,0 +1,116 @@
+.add-form{
+    margin-bottom: 50px;
+}
+
+.addlist-add{
+    width: 40%;
+    margin-left: 15%;
+    font-size: 16px;
+    color: #2D2D2D;
+}
+.add-product-name, .add-product-description{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.add-product-name input, .add-product-description textarea{
+    padding: 10px;
+    width: 80%;
+    
+}
+.add-btn {
+    margin-top: 20px;
+    margin-left: 135px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #2e3b4e; /* Primary color */
+    color: white;
+    border: 2px solid #1d2737;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-btn:hover {
+    background-color: #1d2737; /* Darker shade on hover */
+    border-color: #2e3b4e;
+  }
+
+
+  .image-upload-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.image-upload-wrapper label img {
+    margin-top: 15px;
+    width: 150px;
+    height: 100px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.add-more-btn {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-btn {
+    margin-left: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.addlist-add-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .addlist-add {
+    width: 50%;
+  }
+  
+  .map-container {
+    width: 35%;
+    position: fixed !important;
+    top: 20%;
+    right: 5%;
+    height: 400px;
+    border: 1px solid #ccc;
+  }
+  
+  .map {
+    width: 100%;
+    height: 100%;
+  }
+  .checkbox-group {
+    display: grid;
+    gap: 15px; /* Space between checkboxes */
+    align-items: center; /* Align items vertically if needed */
+    grid-template-columns: repeat(3, 1fr); /* Allow wrapping to a new line on smaller screens */
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center; /* Vertically center the checkbox and label */
+  }
+  
+  .checkbox label {
+    display: flex;
+    align-items: center; /* Align text and checkbox vertically */
+    font-size: 14px; /* Adjust font size if needed */
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  .checkbox input[type="checkbox"] {
+    margin-right: 8px; /* Add spacing between checkbox and label */
+  }
+  

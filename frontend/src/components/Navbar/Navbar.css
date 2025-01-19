@@ -1,0 +1,185 @@
+.header, .header-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 10%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.header-bg {
+    /* background-color: rgba(102, 58, 58, 0.619); */
+    background-color: #1A4C5A;
+    color: white;
+}
+
+.logo {
+    font-size: 28px; /* Slightly reduced size for better spacing */
+    color: #2D2D2D;
+    font-weight: 700;
+    text-decoration: none;
+}
+.logo-bg {
+    font-size: 28px; /* Slightly reduced size for better spacing */
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar-bg{
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Space between links */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar a {
+    position: relative;
+    font-size: 16px; /* Adjusted for better visibility */
+    color: #2D2D2D;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 10px; /* Added padding for clickable area */
+}
+.navbar-bg a{
+    position: relative;
+    font-size: 16px; /* Adjusted for better visibility */
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 5px 10px; /* Added padding for clickable area */
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: #2D2D2D;
+    transition: width 0.3s ease;
+}
+.navbar-bg a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.navbar a:hover::before {
+    width: 100%;
+}
+.navbar-bg a:hover::before {
+    width: 100%;
+}
+
+.navbar .active {
+    border-bottom: 3px solid #2D2D2D;
+}
+.navbar-bg .active {
+    border-bottom: 3px solid white;
+}
+
+.dropdown-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    font-size: 16px; /* Match navbar link size */
+    color: #2D2D2D;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: flex; /* To align text and arrow */
+    align-items: center;
+    gap: 5px;
+}
+.dropdown-toggle-bg {
+    cursor: pointer;
+    font-size: 16px; /* Match navbar link size */
+    color: white;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: flex; /* To align text and arrow */
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 110%; /* Adjusted for better spacing below toggle */
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 150px;
+}
+
+.dropdown-menu p {
+    margin: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: black;
+    font-size: 14px;
+    text-align: left;
+}
+
+.dropdown-menu p:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-arrow {
+    display: inline-block;
+    border: solid #2D2D2D;
+    border-width: 0 2px 2px 0;
+    padding: 5px;
+    margin-left: 5px;
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    margin-top: -2px; 
+}
+.dropdown-arrow-bg {
+    display: inline-block;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    padding: 5px;
+    margin-left: 5px;
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    margin-top: -2px; 
+}
+
+.dropdown-container:hover .dropdown-arrow {
+    transform: rotate(-135deg); /* Flip arrow on hover */
+}
+.dropdown-arrow-bg{
+    transform: rotate(-135deg);
+}

@@ -1,0 +1,11 @@
+.browse-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.browse-container-left{
+    width: 1024px;
+    min-height: calc(100vh-112px);
+}
