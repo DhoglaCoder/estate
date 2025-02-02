@@ -1,6 +1,6 @@
 import express from "express"
 import multer from "multer"
-import { createListing,getAllListings } from "../controller/listController.js";
+import { createListing,getAllListings,deleteUserData,getCardData } from "../controller/listController.js";
 
 const router = express.Router();
 
@@ -19,5 +19,7 @@ const upload = multer({ storage });
 // POST route to create a new listing with images
 router.post('/add', upload.array('images', 10), createListing);
 router.get('/list', getAllListings);
+router.get('/card/:id',getCardData);
+router.delete('/delete/:id', deleteUserData);
 
 export default router;

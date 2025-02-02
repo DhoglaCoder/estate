@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Login.css'
 import Img from '../../assets/login_background.jpg'
 import Google from '../../components/signInWithGoogle/Google'
@@ -32,6 +32,9 @@ export default function Login() {
             })
         }
     }
+    useEffect(() => {
+        document.title = 'Login Page';
+    }, []);
 
   return (
     <>

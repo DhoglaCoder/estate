@@ -26,13 +26,13 @@ export default function Navbar1() {
     return (
       <>
         <header className='header-bg'>
-          <a href="/" className="logo-bg">Estate</a>
+          <a href="/" className="logo-bg">Espace</a>
   
           <ul className="navbar-bg">
             <Link onClick={() => setPage("home")} className={page === "home" ? "active" : ""} to="/">Home</Link>
             <Link onClick={() => setPage("properties")} className={page === "properties" ? "active" : ""} to="/properties">Explore</Link>
-            <Link onClick={() => setPage("")} className="" to="/services">Services</Link>
-            <Link onClick={() => setPage("")} className="" to="/contact">Contact</Link>
+            {/* <Link onClick={() => setPage("")} className="" to="/services">Services</Link> */}
+            <Link onClick={() => setPage("contact")} className={page === "contact" ? "active" : ""} to="/contact">Contact</Link>
             <div className="dropdown-container">
               {isLoggedIn ? (
                 <div
@@ -44,8 +44,9 @@ export default function Navbar1() {
   
                   {showDropdown && (
                     <div className="dropdown-menu">
-                      <p onClick={() => navigate("/profile")}>My Profile</p>
-                      <p onClick={() => navigate("/settings")}>Settings</p>
+                      {/* <p onClick={() => navigate("/profile")}>My Profile</p> */}
+                      <p onClick={() => navigate("/chat")}>Chat</p>
+                      <p onClick={()=> navigate("/my-listing")}>My listing</p>
                       <p onClick={handleLogout}>Logout</p>
                     </div>
                   )}

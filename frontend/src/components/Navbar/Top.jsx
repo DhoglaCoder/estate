@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <>
       <header className='header'>
-        <a href="/" className="logo">Estate</a>
+        <a href="/" className="logo">Espace</a>
 
         
       </header>

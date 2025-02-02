@@ -1,16 +1,16 @@
 import React,{useEffect} from 'react'
 import Navbar1 from '../../components/Navbar/Navbar1'
 import Footer from '../../components/Footer/Footer'
-import Add from '../../components/Add/Add'
+import ListInfo from '../../components/ListInfo/ListInfo'
 
-export default function AddList() {
+export default function Ad() {
   useEffect(() => {
-      document.title = 'Espace | New-Listing';
-    }, []);
+    document.title = 'Espace | Ad';
+  }, []);
   return (
     <>
     <Navbar1/>
-    <Add/>
+    <ListInfo/>
     <Footer/>
     </>
   )

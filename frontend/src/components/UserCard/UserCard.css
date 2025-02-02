@@ -1,0 +1,86 @@
+.user-ad-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    max-width: 400px;
+}
+
+.user-ad-card__image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.user-ad-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-ad-card__availability {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.user-ad-card__details {
+    padding: 15px;
+}
+
+.user-ad-card__title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 5px 0;
+}
+
+.user-ad-card__landmark {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.user-ad-card__description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.user-ad-card__specs span {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.user-ad-card__pricing {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+.user-ad-card__pricing span {
+    display: block;
+    margin: 5px 0;
+}
+
+.user-ad-card__user {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}

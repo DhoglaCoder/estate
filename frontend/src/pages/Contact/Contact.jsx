@@ -1,16 +1,17 @@
 import React,{useEffect} from 'react'
 import Navbar1 from '../../components/Navbar/Navbar1'
 import Footer from '../../components/Footer/Footer'
-import Add from '../../components/Add/Add'
+import ContactUs from '../../components/ContactUs/ContactUs'
 
-export default function AddList() {
+
+export default function Contact() {
   useEffect(() => {
-      document.title = 'Espace | New-Listing';
+      document.title = 'Espace | Contact-Us';
     }, []);
   return (
     <>
-    <Navbar1/>
-    <Add/>
+    <Navbar1 />
+    <ContactUs />
     <Footer/>
     </>
   )

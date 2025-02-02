@@ -1,0 +1,80 @@
+.delete-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+.delete-container-left {
+    width: 100%; /* Ensure the container takes up the full width */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px; /* Adjust the gap between cards */
+    justify-content: space-between; /* Distribute cards evenly with gaps */
+    box-sizing: border-box; /* Ensure padding and borders are included in width */
+}
+
+.user-card-wrapper {
+    width: calc(33.33% - 26.67px); /* Adjust the card width to fit 3 cards per row with the gap */
+    box-sizing: border-box; /* Include padding/borders in the card's width */
+    margin-bottom: 40px; /* Space between rows */
+}
+
+.card-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-delete,
+.btn-update {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-delete {
+    background-color: #ff4d4f;
+    color: white;
+    margin-left: 40%;
+}
+
+.btn-update {
+    background-color: #4caf50;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #d9363e;
+}
+
+.btn-update:hover {
+    background-color: #3e8e41;
+}
+
+.add-list-info-button-div{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Optional: Center vertically */
+}
+
+.add-list-images-btn{
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #2e3b4e;
+    border: 2px solid #1d2737;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.add-list-images-btn:hover{
+    background-color: #1d2737; /* Darker shade on hover */
+    border-color: #2e3b4e;
+}

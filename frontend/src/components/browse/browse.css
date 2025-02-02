@@ -1,4 +1,4 @@
-.browse-container{
+/* .browse-container{
     width: 100%;
     height: auto;
     display: flex;
@@ -8,4 +8,53 @@
 .browse-container-left{
     width: 1024px;
     min-height: calc(100vh-112px);
+} */
+
+.browse-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px; /* Add some spacing between filter and listings */
+}
+
+.browse-filter-sidebar {
+    width: 250px;
+    min-height: calc(100vh - 112px);
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.filter-section {
+    margin-bottom: 15px;
+}
+
+.filter-section h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.filter-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.pincode-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.browse-container-left {
+    width: 1024px;
+    min-height: calc(100vh - 112px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }

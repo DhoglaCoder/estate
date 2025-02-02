@@ -1,16 +1,16 @@
 import React,{useEffect} from 'react'
 import Navbar1 from '../../components/Navbar/Navbar1'
 import Footer from '../../components/Footer/Footer'
-import Add from '../../components/Add/Add'
+import Delete from '../../components/Delete/Delete'
 
-export default function AddList() {
+export default function MyList() {
   useEffect(() => {
-      document.title = 'Espace | New-Listing';
-    }, []);
+    document.title = 'Espace-Your Listing';
+  }, []);
   return (
     <>
     <Navbar1/>
-    <Add/>
+    <Delete/>
     <Footer/>
     </>
   )

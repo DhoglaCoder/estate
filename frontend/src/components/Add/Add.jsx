@@ -7,7 +7,7 @@ import "./Add.css";
 export default function Add() {
   const [imageInputs, setImageInputs] = useState([]);
   const [markerPosition, setMarkerPosition] = useState({
-    lat: 17.455675,
+    lat: 17.455675, 
     lng: 78.488745,
   });
   const [checkboxValues, setCheckboxValues] = useState({
@@ -323,7 +323,7 @@ const handleFileChange = (e, index) => {
               </div>
               <div className="checkbox">
                 <label>
-                  <input type="checkbox" name="Library" checked={checkboxValues.Library} onChange={handleCheckboxChange}/>
+                  <input type="checkbox" name="Library" checked={checkboxValues.library} onChange={handleCheckboxChange}/>
                     Library
                 </label>
               </div>
