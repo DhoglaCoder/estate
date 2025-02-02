@@ -19,24 +19,27 @@ export default function Signup() {
     const handleRegister = async (e)=>{
         e.preventDefault();
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth,email,password);
-            const user1 = userCredential.user;
-            window.localStorage.setItem("LogedIn", true);
-            window.localStorage.setItem("uid", user1.uid);
-            const user = auth.currentUser;
-            console.log(user);
-            if(user){
-                await setDoc(doc(db,"Users",user.uid),{
-                    email:user.email,
-                    name:name,
-                    phone:phone
-                });
-            }
-            console.log("User registered successfully");
-            toast.success("User Registered Successfully",{
-                position: "top-center"
-            })
-            navigate("/");
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Store user details in Firestore
+        await setDoc(doc(db, "Users", user.uid), {
+            email: user.email,
+            name: name,
+            phone: phone,
+        });
+
+        // Store user info in localStorage
+        window.localStorage.setItem("LogedIn", true);
+        window.localStorage.setItem("uname", name); // Store name correctly
+        window.localStorage.setItem("uid", user.uid);
+
+        console.log("User registered successfully");
+        toast.success("User Registered Successfully", {
+            position: "top-center"
+        });
+
+        navigate("/");
         } catch (error) {
             console.log(error.message);
             toast.error(error.message,{
