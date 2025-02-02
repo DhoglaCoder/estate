@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./ChatsComp.css";
 import { db } from "../Firebase/firebase";
-import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy, addDoc } from "firebase/firestore";
 
 export default function ChatsComp() {
     const [selectedChat, setSelectedChat] = useState(null);
     const [chats, setChats] = useState([]);
-    const loggedInUserId = localStorage.getItem("uid"); // Fetching the logged-in user's UID
+    const [messages, setMessages] = useState([]);
+    const loggedInUserId = localStorage.getItem("uid");
 
     useEffect(() => {
         if (!loggedInUserId) return;
@@ -29,10 +30,47 @@ export default function ChatsComp() {
         return () => unsubscribe();
     }, [loggedInUserId]);
 
+    useEffect(() => {
+        if (!selectedChat) return;
+
+        // Query messages for the selected chat
+        const messagesRef = collection(db, "chats", selectedChat.id, "messages");
+        const q = query(messagesRef, orderBy("timestamp", "asc"));
+
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const messageList = snapshot.docs.map((doc) => doc.data());
+            setMessages(messageList);
+        });
+
+        return () => unsubscribe();
+    }, [selectedChat]);
+
     const handleChatSelect = (chat) => {
         setSelectedChat(chat);
     };
 
+    const handleSendMessage = async (messageText) => {
+        if (!messageText) return;
+
+        const message = {
+            text: messageText,
+            timestamp: new Date(),
+            sender: loggedInUserId,
+        };
+
+        // Add the message to Firestore
+        const messagesRef = collection(db, "chats", selectedChat.id, "messages");
+        await addDoc(messagesRef, message);
+    };
+
+    useEffect(() => {
+      if (selectedChat) {
+          const messageContainer = document.querySelector('.chat-messages');
+          if (messageContainer) {
+              messageContainer.scrollTop = messageContainer.scrollHeight;
+          }
+      }
+  }, [messages, selectedChat]);
     return (
         <div className="app-wrapper">
             <div className="chat-container-wrapper">
@@ -65,11 +103,36 @@ export default function ChatsComp() {
                                 <h4>{selectedChat.chatName || "Chat"}</h4>
                             </div>
                             <div className="chat-messages">
-                                <p>Start chatting with {selectedChat.chatName || "your contact"}!</p>
+                                {messages.length > 0 ? (
+                                    messages.map((message, index) => (
+                                        <div
+                                            key={index}
+                                            className={`message-bubble ${message.sender === loggedInUserId ? "right" : "left"}`}
+                                        >
+                                            <p>{message.text}</p>
+                                            <span className="message-time">
+                                                {new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                            </span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p>No messages yet</p>
+                                )}
                             </div>
                             <div className="chat-input">
-                                <input type="text" placeholder="Type a message..." />
-                                <button>Send</button>
+                                <input
+                                    type="text"
+                                    placeholder="Type a message..."
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter") {
+                                            handleSendMessage(e.target.value);
+                                            e.target.value = "";
+                                        }
+                                    }}
+                                />
+                                <button onClick={() => handleSendMessage(document.querySelector("input").value)}>
+                                    Send
+                                </button>
                             </div>
                         </div>
                     ) : (

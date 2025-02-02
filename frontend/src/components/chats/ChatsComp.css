@@ -152,3 +152,46 @@ body {
     background-color: #1F6D81;
   }
   
+  .message-bubble {
+    max-width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+/* Right message bubble (sent by the user) */
+.message-bubble.right {
+    background-color: #f1f1f1;
+    color: black;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+/* Left message bubble (received from the other user) */
+.message-bubble.left {
+    background-color: #f1f1f1;
+    color: black;
+    align-self: flex-start;
+}
+
+/* Message timestamp below the message */
+.message-bubble .message-time {
+    font-size: 0.7rem;
+    color: gray;
+    margin-top: 5px; /* Added margin to separate timestamp from message */
+    text-align: right; /* Align the timestamp to the right */
+    width: 100%;
+}
+
+/* Chat box messages container */
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    height: 400px;
+}
+
+/* Chat input box */

@@ -1,5 +1,8 @@
-    import React, { useState, useEffect } from 'react';
+    import React, { useState, useEffect,useRef } from 'react';
     import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+    import { db } from '../Firebase/firebase';
+    import { getAuth } from "firebase/auth";
+    import { collection, query, where, getDoc, setDoc, doc, serverTimestamp } from "firebase/firestore";
     import axios from 'axios';
     import { useNavigate } from 'react-router-dom';
     import Modal from 'react-modal'
@@ -71,6 +74,34 @@
             
         }
 
+
+        const handleContact = async () => {
+            const loggedInUserId = localStorage.getItem("uid"); // Retrieve the logged-in user UID directly from localStorage
+    if (!loggedInUserId || !listing?.userId) {
+        console.error("User or Owner ID is missing!");
+        return;
+    }
+
+    const ownerId = listing.userId;
+    const chatId = loggedInUserId < ownerId ? `${loggedInUserId}_${ownerId}` : `${ownerId}_${loggedInUserId}`;
+    const chatRef = doc(db, "chats", chatId);
+
+    try {
+        const chatSnapshot = await getDoc(chatRef);
+        if (!chatSnapshot.exists()) {
+            await setDoc(chatRef, {
+                chatId,
+                users: [loggedInUserId, ownerId],
+                lastMessage: { text: "", timestamp: null },
+                timestamp: serverTimestamp(),
+            });
+        }
+        navigate('/chat');
+    } catch (error) {
+        console.error("Error creating chat:", error);
+    }
+          };
+
         useEffect(() => {
             // Get the selected listing _id from localStorage
             const selectedListingId = localStorage.getItem('selectedListingId');
@@ -85,13 +116,7 @@
             const fetchListingData = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3000/api/listings/card/${selectedListingId}`);
-                    const fetchedListing = response.data.data;
-                    setListing(fetchedListing);  // Save the listing data
-            
-                    if (fetchedListing && fetchedListing.features) {
-                        console.log("Listing Features:", fetchedListing.features);
-                    }
-
+                    setListing(response.data.data);  // Save the listing data
                 } catch (error) {
                     console.error("Error fetching listing:", error);
                     // Handle error (e.g., navigate to an error page)
@@ -102,7 +127,7 @@
         }, [navigate]);
         
         const { isLoaded, loadError } = useLoadScript({
-            googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+            googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY
         });
 
         if (loadError) return <p>Error loading maps</p>;
@@ -113,6 +138,7 @@
             ? { lat: listing.location.lat, lng: listing.location.lng }
             : defaultCenter;
 
+        
 
         if (!listing) {
             return <p>Loading...</p>;  // Show a loading message while fetching the listing data
@@ -290,7 +316,7 @@
                                         <span className="listinfo-right-mobile">+91-XXXXXXXXXX</span>
                                     </div>
                                 </div>
-                                <button className="listinfo-right-contact" onClick={() => navigate('/chat')}>Contact</button>
+                                <button className="listinfo-right-contact" onClick={handleContact}>Contact</button>
                             </div>
                         </section>
                     </div>
