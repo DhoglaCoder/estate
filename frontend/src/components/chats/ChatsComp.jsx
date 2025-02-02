@@ -8,6 +8,7 @@ export default function ChatsComp() {
     const [chats, setChats] = useState([]);
     const [messages, setMessages] = useState([]);
     const loggedInUserId = localStorage.getItem("uid");
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         if (!loggedInUserId) return;
