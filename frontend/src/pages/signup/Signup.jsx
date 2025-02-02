@@ -79,7 +79,7 @@ export default function Signup() {
                 placeholder="Enter your Email id"
                 className='register-email'
                 onChange={(e)=>setEmail(e.target.value)}
-                rerquired
+                required
                 />
                 <input 
                     type="tel" 

@@ -24,7 +24,7 @@
                 src:'/images/rain-water-harvesting.png',
                 label:'Rain Water'
             },
-            library:{
+            Library:{
                 src:'/images/library-icon.png',
                 label:'Library'
             },
@@ -248,16 +248,18 @@
                         </section>
                         <section className="listinfo-lower-section">
                             <div className="listinfo-features-container">
-                            <h2>Available Features</h2>
-                            <div className="listinfo-features-grid">
-                                {Object.entries(listing.features)
-                                    .filter(([key, value]) => value) // Only show features that are true
-                                    .map(([key]) => (
-                                        <div key={key} className="feature-item">
-                                            <img src={featureImages[key]?.src} alt={featureImages[key]?.label} className="feature-image" />
-                                            <span>{featureImages[key]?.label}</span>
-                                        </div>
-                                    ))}
+                                <h2>Available Features</h2>
+                                <div className="listinfo-features-grid">
+                                    {listing?.features && 
+                                        Object.entries(listing.features)
+                                            .filter(([key, value]) => value) // Only show features that are true
+                                            .map(([key]) => (
+                                                <div key={key} className="feature-item">
+                                                    <img src={featureImages[key]?.src} alt={featureImages[key]?.label} className="feature-image" />
+                                                    <span>{featureImages[key]?.label}</span>
+                                                </div>
+                                            ))
+                                    }
                                 </div>
                             </div>
                         </section>
