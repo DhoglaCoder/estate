@@ -85,8 +85,12 @@
             const fetchListingData = async () => {
                 try {
                     const response = await axios.get(`http://localhost:3000/api/listings/card/${selectedListingId}`);
-                    setListing(response.data.data);  // Assuming your backend sends the listing data under 'data'
-                    console.log("Listing Features:", listing.features);
+                    const fetchedListing = response.data.data;
+                    setListing(fetchedListing);  // Save the listing data
+            
+                    if (fetchedListing && fetchedListing.features) {
+                        console.log("Listing Features:", fetchedListing.features);
+                    }
 
                 } catch (error) {
                     console.error("Error fetching listing:", error);
@@ -250,16 +254,18 @@
                             <div className="listinfo-features-container">
                                 <h2>Available Features</h2>
                                 <div className="listinfo-features-grid">
-                                    {listing?.features && 
-                                        Object.entries(listing.features)
-                                            .filter(([key, value]) => value) // Only show features that are true
-                                            .map(([key]) => (
-                                                <div key={key} className="feature-item">
-                                                    <img src={featureImages[key]?.src} alt={featureImages[key]?.label} className="feature-image" />
-                                                    <span>{featureImages[key]?.label}</span>
-                                                </div>
-                                            ))
-                                    }
+                                {listing?.features ? (
+                Object.entries(listing.features)
+                    .filter(([key, value]) => value)  // Only show features that are true
+                    .map(([key]) => (
+                        <div key={key} className="feature-item">
+                            <img src={featureImages[key]?.src} alt={featureImages[key]?.label} className="feature-image" />
+                            <span>{featureImages[key]?.label}</span>
+                        </div>
+                    ))
+            ) : (
+                <p>No features available.</p>  // Fallback text if there are no features
+            )}
                                 </div>
                             </div>
                         </section>
