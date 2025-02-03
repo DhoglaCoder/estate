@@ -89,9 +89,29 @@
     try {
         const chatSnapshot = await getDoc(chatRef);
         if (!chatSnapshot.exists()) {
+            const loggedInUserRef = doc(db, "Users", loggedInUserId);
+            const ownerUserRef = doc(db, "Users", ownerId);
+
+            const [loggedInUserSnap, ownerUserSnap] = await Promise.all([
+                getDoc(loggedInUserRef),
+                getDoc(ownerUserRef),
+            ]);
+
+            if (!loggedInUserSnap.exists() || !ownerUserSnap.exists()) {
+                console.error("User data not found!");
+                return;
+            }
+
+            const loggedInUserName = loggedInUserSnap.data().name;
+            const ownerUserName = ownerUserSnap.data().name;
+
+            // Create chat with user names
             await setDoc(chatRef, {
                 chatId,
-                users: [loggedInUserId, ownerId],
+                users: [
+                    { id: loggedInUserId, name: loggedInUserName },
+                    { id: ownerId, name: ownerUserName }
+                ],
                 lastMessage: { text: "", timestamp: null },
                 timestamp: serverTimestamp(),
             });
