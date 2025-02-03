@@ -65,6 +65,27 @@ export default function ChatsComp() {
         await addDoc(messagesRef, message);
     };
 
+    const groupMessagesByDate = (messages) => {
+        const grouped = [];
+        let currentDate = null;
+        messages.forEach((message, index) => {
+            const messageDate = new Date(message.timestamp.seconds * 1000);
+    
+            // Format the date as dd/mm/yy
+            const formattedDate = `${messageDate.getDate().toString().padStart(2, '0')}/${(messageDate.getMonth() + 1).toString().padStart(2, '0')}/${messageDate.getFullYear().toString().slice(-2)}`;
+    
+            if (formattedDate !== currentDate) {
+                grouped.push({ date: formattedDate, messages: [message] });
+                currentDate = formattedDate;
+            } else {
+                grouped[grouped.length - 1].messages.push(message);
+            }
+        });
+        return grouped;
+    };
+
+    const groupedMessages = groupMessagesByDate(messages);
+
     return (
         <div className="app-wrapper">
             <div className="chat-container-wrapper">
@@ -98,22 +119,29 @@ export default function ChatsComp() {
                                 <h4>{selectedChat.chatName}</h4>
                             </div>
                             <div className="chat-messages">
-                                {messages.length > 0 ? (
-                                    messages.map((message, index) => (
-                                        <div
-                                            key={index}
-                                            className={`message-bubble ${message.sender === loggedInUserId ? "right" : "left"}`}
-                                        >
-                                            <p>{message.text}</p>
-                                            <span className="message-time">
-                                                {message.timestamp?.seconds ? 
-                                                    new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
-                                                    : ""}
-                                            </span>
+                                {groupedMessages.length > 0 ? (
+                                    groupedMessages.map((group, index) => (
+                                        <div key={index}>
+                                            <div className="date-header">
+                                                <span>{group.date}</span>
+                                            </div>
+                                            {group.messages.map((message, msgIndex) => (
+                                                <div
+                                                    key={msgIndex}
+                                                    className={`message-bubble ${message.sender === loggedInUserId ? "right" : "left"}`}
+                                                >
+                                                    <p>{message.text}</p>
+                                                    <span className="message-time">
+                                                        {message.timestamp?.seconds
+                                                            ? new Date(message.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                                                            : ""}
+                                                    </span>
+                                                </div>
+                                            ))}
                                         </div>
                                     ))
                                 ) : (
-                                    <p>No messages </p>
+                                    <p>No messages</p>
                                 )}
                             </div>
                             <div className="chat-input">
