@@ -83,7 +83,7 @@ import path from 'path';
     try {
       const listings = await listmodel.find();
       listings.forEach(listing => {
-        listing.images = listing.images.map(image => `http://localhost:3000${image}`);
+        listing.images = listing.images.map(image => `https://estate-5e5i.vercel.app/${image}`);
       });
       res.status(200).json({
         success: true,
@@ -121,7 +121,7 @@ import path from 'path';
       if (!listing) {
           return res.status(404).json({ success: false, message: 'Listing not found' });
       }
-      listing.images = listing.images.map(image => `http://localhost:3000${image}`);
+      listing.images = listing.images.map(image => `https://estate-5e5i.vercel.app/${image}`);
       res.status(200).json({
           success: true,
           data: listing,
