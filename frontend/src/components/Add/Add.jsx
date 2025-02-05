@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import image from "../../assets/uploadImage.png";
 import "./Add.css";
+import backendUrl from "../config/config";
 
 export default function Add() {
   const [imageInputs, setImageInputs] = useState([]);
@@ -105,7 +106,7 @@ const handleFileChange = (e, index) => {
         data.append("userId", userId);
         console.log("Form Data:", formData);
         try {
-            const response = await axios.post("http://localhost:3000/api/listings/add", data, {
+            const response = await axios.post(`${backendUrl}/api/listings/add`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

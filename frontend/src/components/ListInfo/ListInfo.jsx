@@ -7,6 +7,7 @@
     import { useNavigate } from 'react-router-dom';
     import Modal from 'react-modal'
     import './ListInfo.css';
+    import backendUrl from '../config/config';
     const mapContainerStyle = {
         width: "100%",
         height: "400px",
@@ -135,7 +136,7 @@
             // Fetch the listing data using the _id
             const fetchListingData = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:3000/api/listings/card/${selectedListingId}`);
+                    const response = await axios.get(`${backendUrl}/api/listings/card/${selectedListingId}`);
                     setListing(response.data.data);  // Save the listing data
                 } catch (error) {
                     console.error("Error fetching listing:", error);

@@ -5,6 +5,7 @@ import './Delete.css'
 import BrowseCard from '../browseCard/browseCard'
 import UserCard from '../UserCard/UserCard'
 import { toast } from 'react-toastify'
+import backendUrl from '../config/config'
 
 export default function Delete() {
     const[listings,setListings] = useState([]);
@@ -13,7 +14,7 @@ export default function Delete() {
     useEffect(()=>{
         const fetchListings = async()=>{
             try {
-                const response = await axios.get("http://localhost:3000/api/listings/list");
+                const response = await axios.get(`${backendUrl}/api/listings/list`);
                 const filteredListings = response.data.data.filter(listing => listing.userId === uid);
                 setListings(filteredListings);
             } catch (error) {
@@ -24,7 +25,7 @@ export default function Delete() {
     },[uid])
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/api/listings/delete/${id}`);
+            await axios.delete(`${backendUrl}/api/listings/delete/${id}`);
             // Remove deleted listing from state
             setListings(listings.filter(listing => listing._id !== id));
             toast.success("Listing deleted successfully",{position: "top-center"})

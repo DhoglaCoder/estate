@@ -3,6 +3,7 @@ import axios from "axios"
 import './browse.css'
 import BrowseCard from '../browseCard/browseCard';
 import { useNavigate } from 'react-router-dom';
+import backendUrl from '../config/config';
 
 export default function Browse1() {
     const [showFilters, setShowFilters] = useState(false);
@@ -18,7 +19,7 @@ export default function Browse1() {
     useEffect(() => {
       const fetchListings = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/api/listings/list");
+          const response = await axios.get(`${backendUrl}/api/listings/list`);
           const filteredListings = response.data.data.filter(listing => listing.userId !== uid);
           setListings(filteredListings);
           setFilteredListings(filteredListings);
