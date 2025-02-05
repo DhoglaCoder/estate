@@ -1,4 +1,5 @@
-import React,{ useState, useEffect } from 'react'
+import React,{ useState, useEffect,useRef } from 'react'
+import { FaBars, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import './Navbar1.css'
 
@@ -22,17 +23,29 @@ export default function Navbar1() {
       setShowDropdown(false);
       navigate("/");
     };
+    const navRef = useRef();
+    
+      const showNavbar = () => {
+        navRef.current.classList.toggle(
+          "responsive_nav"
+        );
+      };
+      const closeNavbar = () => {
+        if (window.innerWidth <= 1024) {
+          navRef.current.classList.remove("responsive_nav");
+        }
+      };
   
     return (
       <>
         <header className='header-bg'>
           <a href="/" className="logo-bg">Espace</a>
   
-          <ul className="navbar-bg">
-            <Link onClick={() => setPage("home")} className={page === "home" ? "active" : ""} to="/">Home</Link>
-            <Link onClick={() => setPage("properties")} className={page === "properties" ? "active" : ""} to="/properties">Explore</Link>
+          <ul className="navbar-bg" ref={navRef}>
+            <Link onClick={() => { setPage("home"); closeNavbar(); }} className={page === "home" ? "active" : ""} to="/">Home</Link>
+            <Link onClick={() => { setPage("properties"); closeNavbar(); }} className={page === "properties" ? "active" : ""} to="/properties">Explore</Link>
             {/* <Link onClick={() => setPage("")} className="" to="/services">Services</Link> */}
-            <Link onClick={() => setPage("contact")} className={page === "contact" ? "active" : ""} to="/contact">Contact</Link>
+            <Link onClick={() => { setPage("contact"); closeNavbar(); }} className={page === "contact" ? "active" : ""} to="/contact">Contact</Link>
             <div className="dropdown-container">
               {isLoggedIn ? (
                 <div
@@ -52,16 +65,14 @@ export default function Navbar1() {
                   )}
                 </div>
               ) : (
-                <Link
-                  onClick={() => setPage("signup")}
-                  className={page === "signup" ? "active" : ""}
-                  to="/signup"
-                >
+                <Link onClick={() => setPage("signup")} className={page === "signup" ? "active" : ""} to="/signup">
                   Sign Up
                 </Link>
               )}
             </div>
+            <button className="nav-btn nav-close-btn" onClick={showNavbar}><FaTimes /></button>
           </ul>
+          <button className="nav-btn" onClick={showNavbar}><FaBars /></button>
         </header>
         <div className="header-space"></div>
       </>

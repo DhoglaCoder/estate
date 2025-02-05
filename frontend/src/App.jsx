@@ -12,7 +12,7 @@ import Chat from './pages/chat/Chat';
 import Contact from './pages/Contact/Contact';
 
 function ProtectedRoute({ children }) {
-  const isLoggedIn = localStorage.getItem('token'); // Checking token in local storage
+  const isLoggedIn = localStorage.getItem('LogedIn') === "true"; // Checking token in local storage
   return isLoggedIn ? children : <Navigate to="/login" replace />;
 }
 

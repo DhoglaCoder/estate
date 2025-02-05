@@ -10,7 +10,7 @@
     /* margin-bottom: 10%; */
 }
 .listinfo-left{
-    margin-top: 1%;
+    margin-top: 3%;
     height: auto;
     display: block;
     width: 65%;
@@ -319,6 +319,7 @@
     top: 0;
     padding-bottom: 16px;
     position: sticky;
+    margin-top: 3%;
 }
 .listinfo-right-contact{
     width: 100%;
@@ -503,10 +504,55 @@
     .listinfo-features-grid {
         grid-template-columns: repeat(3, 1fr); /* 3 per row on smaller screens */
     }
+    .listinfo-container {
+        flex-direction: column; /* Stack the listinfo sections */
+    }
+    .listinfo-left, .listinfo-right {
+        width: 100%; /* Full width on smaller screens */
+    }
+    .listinfo-right {
+        position: relative; /* Remove sticky positioning on mobile */
+        margin-top: 20px;
+    }
+    .listinfo-upper-photo-grid {
+        max-width: 100%; /* Ensure images are full-width on smaller screens */
+    }
+    .image-modal {
+        width: 95%; /* Full width on smaller devices */
+    }
+    .listinfo-upper-body {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: center; /* Center align the items */
+    }
+    
+    .listinfo-upper-body .left, .listinfo-upper-body .right {
+        width: 100%; /* Full width for each on smaller screens */
+        padding: 0; /* Remove padding for mobile */
+    }
+
+    .listinfo-upper-body .title {
+        font-size: 20px; /* Slightly smaller title */
+        text-align: center; /* Center align the title */
+    }
+
+    .listinfo-upper-body .description {
+        font-size: 14px; /* Smaller description text for mobile */
+    }
 }
 
 @media (max-width: 480px) {
     .listinfo-features-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 per row on very small screens */
     }
+    .listinfo-upper-body {
+        padding: 0 10px; /* Add some margin around the container */
+    }
+
+    .listinfo-upper-body .title {
+        font-size: 18px; /* Further reduce font size for smaller screens */
+    }
+
+    .listinfo-upper-body .description {
+        font-size: 12px; /* Reduce description size */
+    }   
 }

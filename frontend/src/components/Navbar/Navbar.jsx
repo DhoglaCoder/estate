@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
+import { FaBars, FaTimes } from "react-icons/fa";
 import './Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -33,17 +34,28 @@ export default function Navbar() {
     setShowDropdown(false);
     navigate("/");
   };
+  const navRef = useRef();
 
+	const showNavbar = () => {
+		navRef.current.classList.toggle(
+			"responsive_nav"
+		);
+	};
+  const closeNavbar = () => {
+    if (window.innerWidth <= 1024) {
+      navRef.current.classList.remove("responsive_nav");
+    }
+  };
   return (
     <>
       <header className={color ? 'header-bg' : 'header'}>
         <a href="/" className={color?"logo-bg":"logo"}>Espace</a>
 
-        <ul className={color?"navbar-bg":"navbar"}>
-          <Link onClick={() => setPage("home")} className={page === "home" ? "active" : ""} to="/">Home</Link>
-          <Link onClick={() => setPage("properties")} className={page === "properties" ? "active" : ""} to="/properties">Explore</Link>
+        <ul className={color?"navbar-bg":"navbar"} ref={navRef}>
+          <Link onClick={() => { setPage("home"); closeNavbar(); }} className={page === "home" ? "active" : ""} to="/">Home</Link>
+          <Link onClick={() => { setPage("properties"); closeNavbar(); }} className={page === "properties" ? "active" : ""} to="/properties">Explore</Link>
           {/* <Link onClick={() => setPage("")} className="" to="/services">Services</Link> */}
-          <Link onClick={() => setPage("contact")} className={page === "contact" ? "active" : ""} to="/contact">Contact</Link>
+          <Link onClick={() => { setPage("contact"); closeNavbar(); }} className={page === "contact" ? "active" : ""} to="/contact">Contact</Link>
           <div className="dropdown-container">
             {isLoggedIn ? (
               <div
@@ -72,7 +84,9 @@ export default function Navbar() {
               </Link>
             )}
           </div>
+          <button className="nav-btn nav-close-btn" onClick={showNavbar}><FaTimes /></button>
         </ul>
+        <button className="nav-btn" onClick={showNavbar}><FaBars /></button>
       </header>
     </>
   );

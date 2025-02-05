@@ -2,7 +2,7 @@ import React from 'react'
 import './browseCard.css'
 
 
-export default function BrowseCard({image,name,title,washroom,availability,furnishing,description,price,securityDeposit,facing,landmark}) {
+export default function BrowseCard({image,name,title,washroom,furnishing,description,price,securityDeposit,facing,landmark}) {
   return (
     <>
     <div className="browse-card-container">
@@ -47,7 +47,7 @@ export default function BrowseCard({image,name,title,washroom,availability,furni
                                     Availability
                                 </div>
                                 <div className="browse-card-info-icon-list-item-value">
-                                    {availability}
+                                    Immediately
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@ export default function BrowseCard({image,name,title,washroom,availability,furni
                     <div className="browse-card-price-amount">
                         <span className="ruppes">₹</span>{price}
                     </div>
-                    <div className="browse-card-security">{securityDeposit}</div>
+                    <div className="browse-card-security"><span className="ruppes">₹</span>{securityDeposit}</div>
                 </div>
                 <div className="browse-card-contact">
                     <span className="browse-card-contact-owner">Contact Owner</span>

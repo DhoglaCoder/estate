@@ -183,3 +183,83 @@
 .dropdown-arrow-bg{
     transform: rotate(-135deg);
 }
+header .nav-btn {
+	padding: 5px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	visibility: hidden;
+	opacity: 0;
+	font-size: 1.8rem;
+}
+
+/* @media only screen and (max-width:1024px) {
+    header .nav-btn{
+        visibility: visible;
+        opacity: 1;
+    }
+    .navbar-bg , .navbar{
+        position: fixed;
+		top: -100vh;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 1.5rem;
+		background-color: #1A4C5A;
+		transition: 1s;
+    }
+    nav .nav-close-btn {
+		position: absolute;
+		top: 2rem;
+		right: 2rem;
+	}
+    header .responsive_nav {
+		transform: translateY(100vh);
+	}
+} */
+
+@media only screen and (max-width: 1024px) {
+    header .nav-btn {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .navbar-bg, .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh; /* Ensure it does not exceed viewport height */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Adjust to prevent full-screen takeover */
+        gap: 1.5rem;
+        background-color: #1A4C5A;
+        padding-top: 80px; /* Space for the header */
+        overflow-y: auto; /* Allows scrolling if content is too long */
+        transition: transform 0.5s ease-in-out;
+        transform: translateY(-100%);
+    }
+
+    .responsive_nav {
+        transform: translateY(0);
+    }
+
+    .nav-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+}

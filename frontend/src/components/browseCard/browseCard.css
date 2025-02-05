@@ -432,3 +432,59 @@
     width: 100%;
     margin-right: 0;
 }
+@media (max-width: 768px) {
+    .browse-card-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .browse-card-outer {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .browse-card-inner {
+        width: 100%;
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .browse-card-image-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .browse-card-photo {
+        width: 90%;
+        height: auto;
+    }
+
+    .browse-card-info-container {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    .browse-card-info-icon-list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .browse-card-estimate {
+        width: 100%;
+        padding: 16px;
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .browse-card-contact-owner {
+        width: 100%;
+        font-size: 14px;
+    }
+}

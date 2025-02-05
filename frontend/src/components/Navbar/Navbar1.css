@@ -124,3 +124,43 @@
 .header-space {
     height: 90px; /* Adjust to match the total height of your header-bg */
 }
+
+@media only screen and (max-width: 1024px) {
+    header .nav-btn {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .navbar-bg, .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh; /* Ensure it does not exceed viewport height */
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Adjust to prevent full-screen takeover */
+        gap: 1.5rem;
+        background-color: #1A4C5A;
+        padding-top: 80px; /* Space for the header */
+        overflow-y: auto; /* Allows scrolling if content is too long */
+        transition: transform 0.5s ease-in-out;
+        transform: translateY(-100%);
+    }
+
+    .responsive_nav {
+        transform: translateY(0);
+    }
+
+    .nav-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+}

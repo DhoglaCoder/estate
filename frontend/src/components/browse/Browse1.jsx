@@ -5,6 +5,7 @@ import BrowseCard from '../browseCard/browseCard';
 import { useNavigate } from 'react-router-dom';
 
 export default function Browse1() {
+    const [showFilters, setShowFilters] = useState(false);
     const [listings, setListings] = useState([]);
     const [filteredListings, setFilteredListings] = useState([]);
     const [selectedCategories, setSelectedCategories] = useState([]);
@@ -74,7 +75,10 @@ export default function Browse1() {
      </div> */}
      <div className="browse-container">
                 {/* Filter Sidebar */}
-                <div className="browse-filter-sidebar">
+                <button className="filter-toggle-btn" onClick={() => setShowFilters(!showFilters)}>
+                    {showFilters ? "Hide Filters" : "Show Filters"}
+                </button>
+                <div className={`browse-filter-sidebar ${showFilters ? "show" : "hide"}`}>
                     <h3>Filters</h3>
 
                     {/* Category Filter */}
@@ -148,7 +152,7 @@ export default function Browse1() {
                                 name={listing.name}
                                 title={listing.title}
                                 price={listing.price}
-                                image={listing.images[1]}
+                                image={listing.images[0]}
                                 washroom={listing.washroom}
                                 availability={listing.title}
                                 furnishing={listing.furnishing}

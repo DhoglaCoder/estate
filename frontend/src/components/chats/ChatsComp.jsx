@@ -7,6 +7,7 @@ export default function ChatsComp() {
     const [selectedChat, setSelectedChat] = useState(null);
     const [chats, setChats] = useState([]);
     const [messages, setMessages] = useState([]);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const loggedInUserId = localStorage.getItem("uid");
 
     useEffect(() => {
@@ -89,7 +90,10 @@ export default function ChatsComp() {
     return (
         <div className="app-wrapper">
             <div className="chat-container-wrapper">
-                <div className="chat-sidebar">
+                <div className={`chat-sidebar ${sidebarOpen ? "open" : ""}`}>
+                <button className="toggle-sidebar-btn" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                    {sidebarOpen ? "Hide Chats" : "Show Chats"}
+                </button>
                     <div className="sidebar-header">
                         <h3>Chats</h3>
                     </div>
