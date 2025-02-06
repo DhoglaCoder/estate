@@ -4,7 +4,7 @@ import React from 'react';
 import Signup from './pages/signup/Signup';
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
-import Properties from './pages/properties/properties';
+import Properties from './pages/properties/Properties';
 import AddList from './pages/AddList/AddList';
 import MyList from './pages/MyList/MyList';
 import Ad from './pages/Ad/Ad';
