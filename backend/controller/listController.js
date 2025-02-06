@@ -83,7 +83,7 @@ import path from 'path';
     try {
       const listings = await listmodel.find();
       listings.forEach(listing => {
-        listing.images = listing.images.map(image => `https://estate-zeta-gray.vercel.app/${image}`);
+        listing.images = listing.images.map(image => `https://estate-2duj.onrender.com/${image}`);
       });
       res.status(200).json({
         success: true,
@@ -121,7 +121,7 @@ import path from 'path';
       if (!listing) {
           return res.status(404).json({ success: false, message: 'Listing not found' });
       }
-      listing.images = listing.images.map(image => `https://estate-zeta-gray.vercel.app/${image}`);
+      listing.images = listing.images.map(image => `https://estate-2duj.onrender.com/${image}`);
       res.status(200).json({
           success: true,
           data: listing,
