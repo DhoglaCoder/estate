@@ -1,3 +1,3 @@
-const backendUrl = "https://estate-5e5i.vercel.app/";
+const backendUrl = "https://estate-2duj.onrender.com";
 
 export default backendUrl;
