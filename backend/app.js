@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import listingRoutes from "./routes/listRoute.js";
 
 const app = express();
-
+const port = 3000;
 // Middleware
 app.use(express.json());
 app.use(cors({
@@ -30,4 +30,6 @@ app.get("/", (req, res) => {
 });
 
 // Export the app for Vercel
-export default app;
+app.listen(port,()=>{
+    console.log("Server is running");
+})
